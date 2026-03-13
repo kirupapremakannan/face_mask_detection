@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Face Mask Detection System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="app-header">
+    <div class="logo-area">
+      <div class="logo-icon">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="11" r="5" stroke="#7dd3fc" stroke-width="1.5"/>
+          <path d="M8 20c0 0 2-3 8-3s8 3 8 3" stroke="#7dd3fc" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="9" y="19" width="14" height="8" rx="4" fill="#7dd3fc" opacity="0.3"/>
+          <path d="M9 23 Q16 21 23 23" stroke="#7dd3fc" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <h1>Face Mask Detection System</h1>
+        <p class="subtitle">AI-powered real-time mask compliance analysis</p>
+      </div>
+    </div>
+    <div class="status-indicator">
+      <span class="dot"></span>
+      <span>AI Ready</span>
+    </div>
+  </header>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats-bar">
+    <div class="stat-card">
+      <div class="stat-num blue" id="stat-total">0</div>
+      <div class="stat-label">Total Scanned</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num green" id="stat-mask">0</div>
+      <div class="stat-label">With Mask ✅</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num red" id="stat-nomask">0</div>
+      <div class="stat-label">Without Mask ❌</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num orange" id="stat-unclear">0</div>
+      <div class="stat-label">Unclear ⚠️</div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-layout">
+
+    <!-- LEFT: Upload + Preview -->
+    <section class="panel upload-panel">
+      <h2 class="panel-title">📷 Image Input</h2>
+
+      <div class="drop-zone" id="dropZone">
+        <input type="file" id="fileInput" accept="image/*" />
+        <div class="drop-placeholder" id="dropPlaceholder">
+          <div class="drop-icon">🖼️</div>
+          <p class="drop-text">Drag & drop an image here</p>
+          <p class="drop-sub">or click to browse files</p>
+          <p class="drop-sub">Supports: JPG, PNG, WEBP, GIF</p>
+        </div>
+        <img id="previewImg" alt="Preview" />
+        <div class="img-badge" id="imgBadge">Image Loaded</div>
+        <video id="webcamVideo" autoplay playsinline></video>
+        <button class="webcam-icon" id="webcamIcon" title="Use Webcam">📹</button>
+      </div>
+
+      <!-- Webcam Option -->
+      <div class="webcam-section">
+        <button class="btn btn-outline" id="captureBtn" onclick="captureWebcam()" style="display:none">📸 Capture Frame</button>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="analyzeBtn" onclick="analyzeImage()" disabled>
+          🔍 Analyze Image
+        </button>
+        <button class="btn btn-outline" onclick="clearAll()">🗑️ Clear</button>
+        <button class="btn btn-demo" onclick="loadDemo()">🎯 Try Demo</button>
+      </div>
+    </section>
+
+    <!-- RIGHT: Results + History -->
+    <aside class="right-column">
+
+      <!-- Detection Result -->
+      <div class="panel">
+        <h2 class="panel-title">🧠 Detection Result</h2>
+        <div id="resultArea">
+          <div class="result-card waiting">
+            <div class="result-badge badge-waiting">⏳ Awaiting Image</div>
+            <p class="detail-text">Upload a photo or use your webcam to begin AI-powered mask detection.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scan History -->
+      <div class="panel">
+        <h2 class="panel-title">📋 Scan History</h2>
+        <div id="historyList" class="history-list">
+          <p class="empty-state">No scans yet. Upload an image to begin.</p>
+        </div>
+        <button class="btn btn-outline" style="width:100%;margin-top:10px" onclick="clearHistory()">Clear History</button>
+      </div>
+
+    </aside>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="app-footer">
+    <p>Face Mask Detection System &mdash; Mini Project</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
