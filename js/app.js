@@ -178,7 +178,7 @@ async function analyzeImage() {
         // NOTE: In production, never expose API keys in frontend code!
         // Use a backend server to proxy requests.
         // For local development and demo purposes only:
-        "Authorization": "Bearer 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"
+        "Authorization": "Bearer API_KEY_HERE"
       },
       body: JSON.stringify({
   model: API_MODEL,
