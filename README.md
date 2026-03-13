@@ -1,0 +1,4 @@
+-> go to the website openrouter
+-> login through your account
+-> generate api key
+-> paste it in the app.js in the 181 line of code, replacing api_key_here
